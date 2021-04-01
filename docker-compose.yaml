@@ -4,6 +4,7 @@ x-airflow-common:
   image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.0.1}
   environment:
     &airflow-common-env
+    PYTHONPATH: "/home/airflow/.local/lib/python3.6/site-packages"
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
@@ -93,4 +94,4 @@ services:
     restart: always
 
 volumes:
-  postgres-db-volume:
+  postgres-db-volume: 
